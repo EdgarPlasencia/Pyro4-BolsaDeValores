@@ -1,17 +1,18 @@
+from ast import Str
 import Pyro4
 
 class Empresa:
     def __init__(self,nombre,codigo):
         self.nombre=nombre
         self.codigo=codigo
-        self.acciones=1000
-        self.valor=1000
+        self.acciones=100
+        self.valor=10000
     def comprarA(self,num):
         self.acciones=self.acciones-num
-        self.valor=self.valor+(1*num)
+        self.valor=self.valor+(10*num)
     def venderA(self,num):
         self.acciones=self.acciones+num
-        self.valor=self.valor-(1*num)
+        self.valor=self.valor-(10*num)
 @Pyro4.expose
 class Bolsa:
     empresas=[]
@@ -19,23 +20,28 @@ class Bolsa:
     def agregarE(self,nombre):
         codigo=len(self.empresas)+1
         self.empresas.append(Empresa(nombre,codigo))
-        print('La empresa ',nombre,' se agrego a la bolsa')
+        txt='La empresa '+nombre+' se agrego a la bolsa'
+        return txt
     def listar(self):
-        print('Empresa||','Codigo||','Valor||','Acciones')
+        txt='Empresa||'+'Codigo||'+'Acciones||'+'Valor'+'\n'
         for i in self.empresas:
-            print(i.nombre,i.codigo,i.valor,i.acciones)
+            txt=txt+str(i.nombre)+'\t'+str(i.codigo)+'\t'+str(i.acciones)+'\t'+str(i.valor)+'\n'
+            print(txt)
+        print(txt)
+        return txt
+        
     def comprarB(self,num,codigo):
         for i in self.empresas:
             if(i.codigo==codigo):
                 i.comprarA(num)
-                print('Se compro ',num,' acciones en ',i.nombre)
+                txt='Se compro '+str(num)+' acciones en '+i.nombre
+                return txt
     def venderB(self,num,codigo):
         for i in self.empresas:
             if(i.codigo==codigo):
                 i.venderA(num)
-                print('Se vendieron ',num,' acciones en ',i.nombre)
-
-
+                txt='Se vendieron '+str(num)+' acciones en '+i.nombre
+                return txt
 
 
 

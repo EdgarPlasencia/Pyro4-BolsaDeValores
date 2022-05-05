@@ -1,5 +1,4 @@
 import Pyro4
-
 b=Pyro4.Proxy("PYRO:bolsa@localhost:9090")
 
 
@@ -39,17 +38,19 @@ while not salir:
  
     if opcion == 1:
         nomE=input("Ingrese el nombre de la empresa:")
-        b.agregarE(nomE)
+        print(b.agregarE(nomE))
     elif opcion == 2:
         codE=int(input("Ingrese el codigo de la empresa:"))
         numA=int(input("Ingrese el numero de acciones a comprar:"))
-        b.comprarB(numA,codE)
+        txt=b.comprarB(numA,codE)
+        print(txt)
     elif opcion == 3:
         codE=int(input("Ingrese el codigo de la empresa:"))
         numA=int(input("Ingrese el numero de acciones a vender:"))
-        b.venderB(numA,codE)
+        txt=b.venderB(numA,codE)
+        print(txt)
     elif opcion == 4:
-        b.listar()
+        print(b.listar())
     elif opcion == 5:
         salir = True
     else:
