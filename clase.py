@@ -1,4 +1,3 @@
-from ast import Str
 import Pyro4
 
 class Empresa:
@@ -21,12 +20,12 @@ class Bolsa:
         codigo=len(self.empresas)+1
         self.empresas.append(Empresa(nombre,codigo))
         txt='La empresa '+nombre+' se agrego a la bolsa'
+        print(txt)
         return txt
     def listar(self):
         txt='Empresa||'+'Codigo||'+'Acciones||'+'Valor'+'\n'
         for i in self.empresas:
             txt=txt+str(i.nombre)+'\t'+str(i.codigo)+'\t'+str(i.acciones)+'\t'+str(i.valor)+'\n'
-            print(txt)
         print(txt)
         return txt
         
@@ -35,12 +34,14 @@ class Bolsa:
             if(i.codigo==codigo):
                 i.comprarA(num)
                 txt='Se compro '+str(num)+' acciones en '+i.nombre
+                print(txt)
                 return txt
     def venderB(self,num,codigo):
         for i in self.empresas:
             if(i.codigo==codigo):
                 i.venderA(num)
                 txt='Se vendieron '+str(num)+' acciones en '+i.nombre
+                print(txt)
                 return txt
 
 

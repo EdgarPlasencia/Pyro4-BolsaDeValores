@@ -1,12 +1,6 @@
 import Pyro4
 b=Pyro4.Proxy("PYRO:bolsa@localhost:9090")
 
-
-
-#b.comprarB(10,1)
-#b.venderB(10,1)
-
-
 def pedirNumeroEntero():
  
     correcto=False
@@ -24,7 +18,7 @@ salir = False
 opcion = 0
 while not salir:
     print ("===================================================================")
-    print("================== Almacenes tu vieja ==============================")
+    print("===========================BDVTV.Inc================================")
     print ("===================================================================")   
     print ("1.-AGREGAR EMPRESA")
     print ("2.-COMPRAR ACCIONES")
